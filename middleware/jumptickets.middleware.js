@@ -14,19 +14,8 @@ const jumpticketsByDate = asyncHandler(async(req,res, next) => {
     };
 });
 
-const updateAccountBalance = asyncHandler(async(req,res,next) => {
-    const { user } = req.body;
-    const updated = await calcAccountBalance(user);
-    if(updated){
-        next();
-    } else {
-        res.status(400);
-        throw new Error('Ungültige Benutzereingaben')
-    }
-});
 
 
 module.exports = {
-    jumpticketsByDate,
-    updateAccountBalance
+    jumpticketsByDate
 };

@@ -110,6 +110,6 @@ skydiverSchema.pre('save', function(next){
     next();
 });
 
-const SKYDIVER = mongoose.model('Skyidver', skydiverSchema);
+const SKYDIVER = mongoose.model('Skydiver', skydiverSchema);
 
 module.exports = SKYDIVER;

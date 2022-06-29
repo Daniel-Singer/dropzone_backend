@@ -17,6 +17,6 @@ const router = express.Router();
 router
   .route("/")
   .get(jumpticketsByDate, allJumpTickets)
-  .post(updateAccountBalance, addJumpTicket);
+  .post(addJumpTicket);
 
 module.exports = router;
