@@ -1,6 +1,12 @@
-const express = require('express');
-const { allJumpTickets } = require('../controllers/jumpticket.controllers');
-const { jumpticketsByDate } = require('../middleware/jumptickets.middleware');
+const express = require("express");
+const {
+  allJumpTickets,
+  addJumpTicket,
+} = require("../controllers/jumpticket.controllers");
+const {
+  jumpticketsByDate,
+  updateAccountBalance,
+} = require("../middleware/jumptickets.middleware");
 const router = express.Router();
 
 /**
@@ -8,6 +14,9 @@ const router = express.Router();
  * @route /api/v1/jumptickets
  */
 
-router.route('/').get(jumpticketsByDate, allJumpTickets);
+router
+  .route("/")
+  .get(jumpticketsByDate, allJumpTickets)
+  .post(updateAccountBalance, addJumpTicket);
 
 module.exports = router;
