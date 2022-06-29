@@ -14,6 +14,7 @@ app.use(cors());
 
 app.use('/api/v1/loads', require('./routes/load.routes'));
 app.use('/api/v1/skydivers', require('./routes/skydiver.routes'));
+app.use('/api/v1/jumptickets', require('./routes/jumptickets.routes'));
 
 app.listen(process.env.PORT, () => {
     console.log(clc.green(`Server running on Port ${process.env.PORT}`))
