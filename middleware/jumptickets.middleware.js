@@ -2,7 +2,6 @@ const asyncHandler = require('express-async-handler');
 const { LOAD } = require('../models/load.model');
 const SKYDIVER = require('../models/skydiver.model');
 const { jumpticketsOfToday } = require('../utils/jumpticket.utils');
-const { addSkydiver } = require('../utils/load.utils');
 const { calcAccountBalance } = require('../utils/skydiver.utils');
 
 const jumpticketsByDate = asyncHandler(async(req,res, next) => {
