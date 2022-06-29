@@ -20,5 +20,6 @@ const loadsOfToday = async (date) => {
 };
 
 module.exports = {
-    loadsOfToday
+    loadsOfToday,
+    addSkydiver
 }
