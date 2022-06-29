@@ -90,6 +90,10 @@ const skydiverSchema = mongoose.Schema({
   jumpsHere:{
     type: Number,
     default: 0
+  },
+  accountBalance:{
+    type: Number,
+    default: 0
   }
 },{
     timestamps: true
