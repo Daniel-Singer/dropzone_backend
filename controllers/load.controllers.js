@@ -7,6 +7,7 @@ const { LOAD } = require("../models/load.model");
 
 const allLoads = asyncHandler(async (req, res) => {
     const loads = await LOAD.find({});
+    res.status(200).json(loads);
 });
 
 /**

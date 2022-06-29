@@ -13,3 +13,5 @@ router.route("/").get(allLoads).post(addLoad);
  */
 
 router.route('/:_id').get(oneLoad).delete(deleteLoad);
+
+module.exports = router;

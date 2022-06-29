@@ -12,7 +12,8 @@ const loadSchema = mongoose.Schema(
       default: 0,
     },
     plane: { 
-        type: planeSchema
+        type: String,
+        required: true
     },
     startedAt: {
       type: Date,
@@ -26,6 +27,22 @@ const loadSchema = mongoose.Schema(
       type: Date,
       default: null,
     },
+    skydivers:{
+        type: Array,
+        default: []
+    },
+    tandem: {
+        type: Array,
+        default: []
+    },
+    aff: {
+        type: Array,
+        default: []
+    },
+    group:{
+        type: Array,
+        default: []
+    }
   },
   {
     timestamps: true,
