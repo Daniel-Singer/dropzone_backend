@@ -7,6 +7,7 @@ const app = express();
 require('./config/db')();
 
 app.use(express.json());
+app.use(cors());
 
 app.listen(process.env.PORT, () => {
     console.log(clc.green(`Server running on Port ${process.env.PORT}`))
