@@ -2,6 +2,7 @@ const express = require("express");
 const {
   allJumpTickets,
   addJumpTicket,
+  updateJumpticket,
 } = require("../controllers/jumpticket.controllers");
 const {
   jumpticketsByDate,
@@ -10,13 +11,18 @@ const {
 const router = express.Router();
 
 /**
- * GET
- * @route /api/v1/jumptickets
+ *  /api/v1/jumptickets
  */
 
 router
   .route("/")
   .get(jumpticketsByDate, allJumpTickets)
   .post(addJumpTicket);
+
+/**
+ * /api/v1/jumptickets/:_id
+ */
+
+router.route('/:_id').put(updateJumpticket)
 
 module.exports = router;
