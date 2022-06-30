@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const { JUMPTICKET } = require("../models/jumpticket.model");
 const SKYDIVER = require("../models/skydiver.model");
 
@@ -62,7 +64,14 @@ const calcTotalJumps = async (_id) => {
   await skydiver.save();
 };
 
+const generateToken = (_id) => {
+  return jwt.sign({_id}, process.env.JWT_SECRET, {
+    expiresIn: '14h'
+  })
+};
+
 module.exports = {
   calcAccountBalance,
-  calcTotalJumps
+  calcTotalJumps,
+  generateToken
 };
