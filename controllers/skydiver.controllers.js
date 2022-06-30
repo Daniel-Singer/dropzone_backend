@@ -74,9 +74,10 @@ const auth = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
   const user = await SKYDIVER.findOne({ username });
   if(user && await user.matchPassword(password)){
-    const { _id, username } = user;
+    const { _id, username, isAdmin } = user;
     res.status(200).json({
         username,
+        isAdmin,
         token: generateToken(_id)
     })
   } else {
