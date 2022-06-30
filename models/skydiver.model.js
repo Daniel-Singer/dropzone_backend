@@ -94,12 +94,32 @@ const skydiverSchema = mongoose.Schema({
   accountBalance:{
     type: Number,
     default: 0
+  },
+  isAdmin:{
+    type: Boolean,
+    default: false
+  },
+  username:{
+    type: String,
+    default: ''
+  },
+  password:{
+    type: String,
+    default: ''
   }
 },{
     timestamps: true
 });
 
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password)
+}
+
 skydiverSchema.pre('save', function(next){
+
+  if (!this.isModified('password')) {
+    next()
+  };
 
     this.firstName = this.firstName.toLowerCase().trim();
     this.lastName = this.lastName.toLowerCase().trim();
@@ -107,6 +127,10 @@ skydiverSchema.pre('save', function(next){
     if(this.displayName === ''){
         this.displayName = `${this.firstName} ${this.lastName}`
     };
+  
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password, salt);
+
     next();
 });
 
