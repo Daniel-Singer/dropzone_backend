@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
 
 const skydiverSchema = mongoose.Schema({
   firstName: {
@@ -111,11 +112,11 @@ const skydiverSchema = mongoose.Schema({
     timestamps: true
 });
 
-userSchema.methods.matchPassword = async function (enteredPassword) {
+skydiverSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password)
 }
 
-skydiverSchema.pre('save', function(next){
+skydiverSchema.pre('save', async function(next){
 
   if (!this.isModified('password')) {
     next()
