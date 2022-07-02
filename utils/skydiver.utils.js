@@ -58,8 +58,6 @@ const calcAccountBalance = async (_id) => {
       transactionsTotal = transactions[0].total ? transactions[0].total : 0;
     };
 
-    console.log(transactions[0].total)
-
     skydiver.accountBalance = (jumpticketsTotal * -1) + transactionsTotal;
 
     await skydiver.save();

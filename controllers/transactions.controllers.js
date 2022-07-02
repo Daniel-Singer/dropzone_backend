@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const { default: mongoose } = require('mongoose');
+const SKYDIVER = require('../models/skydiver.model');
 const TRANSACTION = require('../models/transaction.model');
 const { calcAccountBalance } = require('../utils/skydiver.utils');
 
@@ -68,8 +69,26 @@ const addTransaction = asyncHandler(async(req,res) => {
     }
 });
 
+/**
+ * POST - Delete Transaction
+ */
+
+const deleteTransaction = asyncHandler(async(req,res) => {
+    const { _id } = req.params;
+    const transaction = await TRANSACTION.findByIdAndDelete(_id);
+    if(transaction){
+        await calcAccountBalance(transaction.payer);
+        const skydiver = await SKYDIVER.findById(transaction.payer);
+        res.status(200).json(skydiver);
+    } else {
+        res.status(404);
+        throw new Error('Transaktion konnte nicht gelöscht werden')
+    }
+});
+
 module.exports = {
     allTransactions,
     skydiverTransactions,
-    addTransaction
+    addTransaction,
+    deleteTransaction
 }

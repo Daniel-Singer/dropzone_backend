@@ -1,5 +1,6 @@
 const express = require('express');
-const { allTransactions, addTransaction, skydiverTransactions } = require('../controllers/transactions.controllers');
+const { allTransactions, addTransaction, skydiverTransactions, deleteTransaction } = require('../controllers/transactions.controllers');
+const { protect, admin } = require('../middleware/auth.middleware');
 const router = express.Router();
 
 
@@ -8,13 +9,20 @@ const router = express.Router();
  * @description returns all transactions
  */
 
-router.route('/').get(allTransactions).post(addTransaction);
+router.route('/').get( allTransactions).post(addTransaction);
 
 /**
  * @route /api/v1/transactions/:_id
+ * @description Requests for specific transaction
+ */
+
+router.route('/:_id').delete(protect,admin,deleteTransaction);
+
+/**
+ * @route /api/v1/transactions/skydiver/:_id
  * @description returns transactions for specific skydiver
  */
 
-router.route('/:_id').get(skydiverTransactions)
+router.route('/skydiver/:_id').get(skydiverTransactions)
 
 module.exports = router;
