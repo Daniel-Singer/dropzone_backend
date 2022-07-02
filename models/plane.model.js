@@ -15,7 +15,8 @@ const planeSchema = mongoose.Schema({
     },
     climbingTime:{
         type: Number,
-        required: true
+        required: true,
+        default: 1200
     }
 });
 
