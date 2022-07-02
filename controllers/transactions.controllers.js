@@ -51,7 +51,7 @@ const skydiverTransactions = asyncHandler(async(req,res) => {
         transactions,
         total: total[0].total
     });
-})
+});
 
 /**
  * POST - New Transaction
