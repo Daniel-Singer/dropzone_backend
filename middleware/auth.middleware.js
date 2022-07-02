@@ -15,7 +15,7 @@ const protect = asyncHandler(async(req,res,next) => {
             token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             req.skydiver = await SKYDIVER.findById(decoded._id).select('-password');
-            next()
+            next();
         } catch (error) {
             console.error(error);
             res.status(401);
