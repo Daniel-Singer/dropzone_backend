@@ -1,5 +1,5 @@
 const express = require('express');
-const { allTransactions, addTransaction } = require('../controllers/transactions.controllers');
+const { allTransactions, addTransaction, skydiverTransactions } = require('../controllers/transactions.controllers');
 const router = express.Router();
 
 
@@ -9,5 +9,12 @@ const router = express.Router();
  */
 
 router.route('/').get(allTransactions).post(addTransaction);
+
+/**
+ * @route /api/v1/transactions/:_id
+ * @description returns transactions for specific skydiver
+ */
+
+router.route('/:_id').get(skydiverTransactions)
 
 module.exports = router;
