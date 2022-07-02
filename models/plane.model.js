@@ -20,6 +20,12 @@ const planeSchema = mongoose.Schema({
     }
 });
 
+planeSchema.pre('save', function(next){
+    this.name = this.name.toLowerCase();
+    this.license = this.license.toLowerCase();
+    next()
+});
+
 const PLANE = mongoose.model('Plane', planeSchema);
 
 exports.planeSchema = planeSchema;
