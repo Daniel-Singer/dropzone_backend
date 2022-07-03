@@ -1,4 +1,4 @@
-export const planes = [
+const planes = [
     {
         name: 'Pilatus Porter PC-6',
         license: 'F-GKIA',
@@ -12,3 +12,5 @@ export const planes = [
         capacity: 18
     }
 ];
+
+module.exports = { planes }

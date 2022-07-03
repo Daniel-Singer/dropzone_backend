@@ -1,4 +1,4 @@
-export const skydivers = [
+const skydivers = [
     {
         firstName: 'Roman',
         lastName: 'Exinger',
@@ -58,3 +58,5 @@ export const skydivers = [
         password: 'Helmut1234'
     },
 ];
+
+module.exports = { skydivers };
