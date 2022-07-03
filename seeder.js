@@ -23,7 +23,9 @@ const importData = async () => {
         await PLANE.deleteMany();
         await TICKET.deleteMany();
 
-        const createdSkydivers = await SKYDIVER.insertMany(skydivers);
+        for await (let entry of skydivers){
+            const skydiver = await SKYDIVER.create(entry);
+        }
         const createdPlanes = await PLANE.insertMany(planes);
         const createdTickets = await TICKET.insertMany(tickets);
 

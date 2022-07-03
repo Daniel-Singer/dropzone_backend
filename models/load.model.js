@@ -12,8 +12,9 @@ const loadSchema = mongoose.Schema(
       default: 0,
     },
     plane: { 
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Plane'
     },
     startedAt: {
       type: Date,

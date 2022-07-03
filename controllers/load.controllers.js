@@ -17,6 +17,7 @@ const allLoads = asyncHandler(async (req, res) => {
 
 const addLoad = asyncHandler(async(req,res) => {
     const load = await LOAD.create(req.body);
+    await load.populate('plane')
     res.status(200).json(load);
 });
 
