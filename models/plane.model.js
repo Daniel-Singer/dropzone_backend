@@ -17,6 +17,10 @@ const planeSchema = mongoose.Schema({
         type: Number,
         required: true,
         default: 1200
+    },
+    isDefault: {
+        type: Boolean,
+        default: false
     }
 });
 
