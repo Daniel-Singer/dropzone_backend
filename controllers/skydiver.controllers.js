@@ -48,7 +48,16 @@ const addSkydiver = asyncHandler(async (req, res) => {
  * DELETE - Delete Skydiver
  */
 
-// TODO - Dlete skydiver route implementieren
+const deleteSkydiver = asyncHandler(async(req,res) => {
+  const { _id } = req.params;
+  const skydiver = await SKYDIVER.findByIdAndDelete(_id);
+  if(skydiver){
+    res.status(200).json(skydiver);
+  } else {
+    res.status(500);
+    throw new Error('Error! Springer konnte nicht gelöscht werden')
+  }
+});
 
 /**
  * PUT - Update Skydiver
@@ -76,6 +85,7 @@ const auth = asyncHandler(async (req, res) => {
   if(user && await user.matchPassword(password)){
     const { _id, username, isAdmin } = user;
     res.status(200).json({
+        _id,
         username,
         isAdmin,
         token: generateToken(_id)
@@ -91,5 +101,6 @@ module.exports = {
   addSkydiver,
   oneSkydiver,
   updateSkydiver,
+  deleteSkydiver,
   auth
 };
