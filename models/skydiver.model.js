@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
+const { capitalize } = require("../utils/capitalize.utils");
 
 const skydiverSchema = mongoose.Schema({
   firstName: {
@@ -126,7 +127,7 @@ skydiverSchema.pre('save', async function(next){
     this.lastName = this.lastName.toLowerCase().trim();
 
     if(this.displayName === ''){
-        this.displayName = `${this.firstName} ${this.lastName}`
+        this.displayName = `${capitalize(this.firstName)} ${capitalize(this.lastName)}`
     };
   
     const salt = await bcrypt.genSalt(10)
