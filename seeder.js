@@ -8,6 +8,7 @@ const dotenv = require('dotenv');
 const SKYDIVER = require('./models/skydiver.model');
 const { PLANE } = require('./models/plane.model');
 const TICKET = require('./models/ticket.model');
+// const transformSkydivers = require('./seederdata/convertJsonSkydivers');
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ const importData = async () => {
         await SKYDIVER.deleteMany();
         await PLANE.deleteMany();
         await TICKET.deleteMany();
+        // await transformSkydivers();
 
         for await (let entry of skydivers){
             const skydiver = await SKYDIVER.create(entry);
@@ -37,4 +39,17 @@ const importData = async () => {
     }
 };
 
-importData();
+/**
+ * Destroys data for develepment purposes only
+ */
+
+const destroyData = async() => {
+    await SKYDIVER.deleteMany();
+    process.exit();
+};
+
+if(process.argv[2] === '-destroy'){
+    destroyData();
+} else {
+    importData();
+}

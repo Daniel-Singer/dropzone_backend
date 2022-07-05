@@ -79,7 +79,7 @@ const skydiverSchema = mongoose.Schema({
   },
   isStudent: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   license:{
     type: String,
