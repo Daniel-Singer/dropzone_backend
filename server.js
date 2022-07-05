@@ -18,6 +18,7 @@ app.use('/api/v1/jumptickets', require('./routes/jumptickets.routes'));
 app.use('/api/v1/transactions', require('./routes/transactions.routes'));
 app.use('/api/v1/planes', require('./routes/plane.routes'));
 app.use('/api/v1/tickets', require('./routes/tickets.routes'));
+app.use('/api/v1/dashboard', require('./routes/dashboard.routes'));
 
 app.listen(process.env.PORT, () => {
     console.log(clc.green(`Server running on Port ${process.env.PORT}`))
