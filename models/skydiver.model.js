@@ -97,6 +97,10 @@ const skydiverSchema = mongoose.Schema({
     type: Number,
     default: 0
   },
+  isManifest:{
+    Boolean,
+    default: false
+  },
   isAdmin:{
     type: Boolean,
     default: false
